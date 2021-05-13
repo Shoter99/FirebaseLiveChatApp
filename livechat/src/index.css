@@ -1,3 +1,13 @@
+:root{
+  --richblack: #0A100D;
+  --cultured: #f1f1f1;
+  --platinum: #e4e4e4;
+  --auburn: #a22c29;
+  --burntumber: #902923;
+  --lightred: #fa7068;
+  --grey: #464545;
+  --richred: #c92523;
+}
 @font-face {
   font-family: 'NoBills';
   src: local('NoBills'),
@@ -24,7 +34,7 @@ code {
   padding: 10px 15px;
 }
 .title{
-  color: #A22C29;
+  color: var(--auburn);
   font-family: 'NoBills';
   text-align: left;
   padding-left: 2rem;
@@ -36,7 +46,7 @@ footer{
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: #0A100D;
+  background-color: var(--richblack);
   color: white;
   text-align: center;
   font-size: .8em;
@@ -48,13 +58,13 @@ footer{
 }
 .middle{
 
-  background-color: #F1F1F1;
+  background-color: var(--cultured);
   text-align: center;
   padding: 5rem 0;
 }
 .loginBtn{
-  background-color: #464545;
-  color: #fa7068;
+  background-color: var(--grey);
+  color: var(--lightred);
   font-weight: bold;
   border:#000 2px solid; 
   padding: 1rem;
@@ -65,4 +75,73 @@ box-shadow: 8px 0px 0px 0px #DCD0C0, 0px 8px 0px 0px #B1938B, -8px 0px 0px 0px #
 .loginBtn:hover{
   font-size: 1em;
   cursor: pointer;
+}
+.logOut{
+  text-align: right;
+  padding: .5rem .5rem;
+}
+.logOutBtn{
+  justify-content: right;
+  color: var(--lightred);
+  font-weight: bold;
+  border: none;
+  font-size: 1em;
+  transition: all .4s ease;
+}
+.logOutBtn:hover{
+  color: var(--lightred);
+  cursor: pointer;
+  font-size: 1.1em;
+}
+.welcome{
+  padding: 1rem;
+  font-size: 1.4em;
+  text-align: center;
+  font-family: 'Gill Sans', sans-serif;
+}
+.username{
+  font-size: 1.5em;
+  color: var(--richred);
+}
+.joinFormWrapper{
+  padding: 1rem;
+  margin: 0 1rem;
+  margin-top: 3rem;
+  text-align: center;
+  border:var(--richblack) 3px dashed;
+}
+.joinForm label{
+  margin-right: 8rem;
+  font-size: 1.2em;
+}
+.joinForm input{
+  background-color: transparent;
+  border: none;
+  border-bottom:var(--lightred) 2px solid;
+  font-size: 1em;
+  text-align: center;
+  transition: all .2s ;
+}
+
+
+.joinForm input:hover{
+  font-size: 1.1em;
+}
+.joinForm input:focus{
+  font-size: 1.1em;
+  padding: .5em;
+}
+.joinForm button[type=submit]{
+  margin: 2rem;
+  padding: .5rem 1rem;
+  border:#0A100D 2px solid;
+  color: var(--auburn);
+  font-size: 1.2em;
+  transition: all .3s ease-in-out;
+}
+.joinForm button[type=submit]:hover{
+  background-color:#0A100D;
+  cursor: pointer;
+  color:var(--lightred);
+
 }

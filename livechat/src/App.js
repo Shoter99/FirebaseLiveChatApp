@@ -5,6 +5,7 @@ import Login from './components/Login'
 import Footer from './components/Footer'
 import 'firebase/auth'
 import {useAuthState} from 'react-firebase-hooks/auth'
+import HomePage from './components/HomePage';
 
 function App() {
   
@@ -22,11 +23,18 @@ function App() {
     })
   }
   const [user] = useAuthState(auth)
+  
+  const logOut = () =>{
+    if(auth.currentUser){
+      auth.signOut()
+    }
+  }
+
 return (
     <div className="App">
       <div className="container">
         <Header />
-        {user ?  `Hello ${user.displayName}` : <Login onLogin={LoginWithGoogle}/> }
+        {user ?  <HomePage user={user} onLogOut={logOut}/> : <Login onLogin={LoginWithGoogle}/> }
         <Footer />
       </div>
     </div>
