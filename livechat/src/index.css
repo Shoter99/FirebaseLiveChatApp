@@ -1,0 +1,68 @@
+@font-face {
+  font-family: 'NoBills';
+  src: local('NoBills'),
+  url('./fonts/post-no-bills-jaffna-cufonfonts/PostNoBillsJaffna-Bold.ttf') format('truetype');
+  font-weight: normal;
+}
+body {
+  background-color: #F1F1F1;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.header{
+  background-color: #E4E4E4;
+  padding: 10px 15px;
+}
+.title{
+  color: #A22C29;
+  font-family: 'NoBills';
+  text-align: left;
+  padding-left: 2rem;
+  font-size: 3em;
+  text-shadow: 1px 0px 1px #CCCCCC, 0px 1px 1px #EEEEEE, 2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE, 3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE, 4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE, 5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE, 6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC;
+  
+}
+footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #0A100D;
+  color: white;
+  text-align: center;
+  font-size: .8em;
+  padding: .5rem;
+
+}
+.container{
+  overflow: hidden;
+}
+.middle{
+
+  background-color: #F1F1F1;
+  text-align: center;
+  padding: 5rem 0;
+}
+.loginBtn{
+  background-color: #464545;
+  color: #fa7068;
+  font-weight: bold;
+  border:#000 2px solid; 
+  padding: 1rem;
+  -webkit-box-shadow: 8px 0px 0px 0px #DCD0C0, 0px 8px 0px 0px #B1938B, -8px 0px 0px 0px #4E4E56, 0px 0px 0px 8px #DA635D, 5px 5px 20px 1px rgba(0,0,0,0); 
+box-shadow: 8px 0px 0px 0px #DCD0C0, 0px 8px 0px 0px #B1938B, -8px 0px 0px 0px #4E4E56, 0px 0px 0px 8px #DA635D, 5px 5px 20px 1px rgba(0,0,0,0);
+  transition: all .3s ease;
+}
+.loginBtn:hover{
+  font-size: 1em;
+  cursor: pointer;
+}
