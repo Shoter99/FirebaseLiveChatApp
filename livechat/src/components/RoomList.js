@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import firebase from '../firebase'
-
+import Room from './Room'
 function useRooms(uid){
     const [rooms, setRooms] = useState([])
+
+
 
     useEffect(() => {
         firebase.firestore()
@@ -19,12 +21,18 @@ function useRooms(uid){
 }
 
 const RoomList = ({ user }) => {
+    function deleteRoom (id){
+        firebase.firestore()
+        .collection(user.uid)
+        .doc(id)
+        .delete()
+    }
     const rooms = useRooms(user.uid)
     return (
-        <div>
+        <div className='roomList'>
 
         {rooms.map((room) => (
-            <div key={room.id}>{room.roomName}</div>
+            <Room key={room.id} onDelete={deleteRoom} roomID={room.roomID} docID={room.id} roomName={room.roomName} />
             ))} 
         </div>
     )

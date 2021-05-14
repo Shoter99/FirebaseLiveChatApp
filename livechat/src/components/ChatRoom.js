@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { useLocation } from 'react-router'
 import firebase from '../firebase'
-const ChatRoom = ({roomID, username}) => {
+const ChatRoom = ({user}) => {
     
+    const location = useLocation()
+    const { roomName, roomID} = location.state
     const [messages, setMessages] = useState([])
-    console.log(roomID, username)
     /*useEffect(() => {
         const firestore = firebase.firestore()
         var user = firebase.auth().currentUser
@@ -30,7 +32,7 @@ const ChatRoom = ({roomID, username}) => {
     return (
         <div>
             <button onClick={leaveRoom}  className='leaveRoom'>Leave Room</button>
-            Hello {username} to chat room {roomID}
+            Hello {user.displayName} to chat room {roomID}
             {messages}
         </div>
     )

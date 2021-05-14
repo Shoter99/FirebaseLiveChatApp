@@ -13,7 +13,8 @@ const HomePage = ( {user, onLogOut} ) => {
     const [roomName, setRoomName] = useState('')
     const [chatroomID, setRoomID] = useState('')
 
-    function JoinRoom(name, roomID){
+
+    const AddRoom = (name, roomID) =>{
         setRoomName(name)
         setRoomID(roomID)
     } 
@@ -39,11 +40,11 @@ const HomePage = ( {user, onLogOut} ) => {
             <Route exact path='/' render={props => (
                 <> 
                     <div className="welcome">Welcome <br></br> <span className='username'>{username} </span></div>
-                    <button onClick={() => setAddRoom(!addRoom)}>{addRoom ? 'Hide Form' : 'Add Room'} </button>
-                    {addRoom ? <JoinChatForm {...props} OnSubmit={JoinRoom} displayName={user.displayName} /> : ''}
+                    <div className='btn-wrapper'><button className='showFormBtn' onClick={() => setAddRoom(!addRoom)}>{addRoom ? 'Hide Form' : 'Add Room'} </button></div>
+                    {addRoom ? <JoinChatForm {...props} OnSubmit={AddRoom} displayName={user.displayName} /> : ''}
                     <RoomList user={user} roomID={chatroomID}/>
                 </> )} />
-            <Route path={`/chat_room`} render={props => <ChatRoom {...props} username={username} roomID={chatroomID}  />} />
+            <Route path={`/chat_room`} render={props => <ChatRoom {...props} user={user}  />} />
         </Router>
     )
 }
