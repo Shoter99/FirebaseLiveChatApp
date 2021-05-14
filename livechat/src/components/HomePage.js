@@ -1,33 +1,50 @@
-import {  useState } from "react"
-import JoinChatForm from "./JoinChatForm"
+import { useEffect, useState } from "react"
+import JoinChatForm from "./AddChatForm"
+import ChatRoom from './ChatRoom'
+import RoomList from './RoomList'
+import {Route, BrowserRouter as Router, Link} from 'react-router-dom'
 import firebase from '../firebase'
-import {useCollectionData} from 'react-firebase-hooks/firestore'
+
 
 const HomePage = ( {user, onLogOut} ) => {
+    const [addRoom, setAddRoom] = useState(false)
     const [inRoom, setInRoom] = useState(false)
-    const [username, setUsername] = useState('')
-    const [roomID, setRoomID] = useState('')
-    const firestore = firebase.firestore()
-    var messages = []
-    function JoinRoom(name, roomID){
-        setUsername(name)
-        setRoomID(roomID)
-        setInRoom(true)
-        
-        const messagesRef = firestore.collection('messages')
-        const query = messagesRef.limit(25)
+    const [username, setUsername] = useState(user.displayName)
+    const [roomName, setRoomName] = useState('')
+    const [chatroomID, setRoomID] = useState('')
 
-        messages  = useCollectionData(query, {'roomID': roomID})
+    function JoinRoom(name, roomID){
+        setRoomName(name)
+        setRoomID(roomID)
+    } 
+    useEffect(() => {
+        if(chatroomID!= ''){
+        firebase.firestore()
+        .collection(user.uid)
+        .add({
+            roomName,
+            roomID: chatroomID
+        })
     }
+    }, [chatroomID])
     
     return (
-        <div className='homePage'>
-            <div className='logOut'>
-                <button  onClick={onLogOut} className="logOutBtn">Log Out</button>
+        <Router>
+            <div className='homePage'>
+                <div className='logOut'>
+                    <button  onClick={onLogOut} className="logOutBtn">Log Out</button>
+                </div>
+
             </div>
-            
-            {inRoom ? `Welcome ${username} to room ${roomID} ${messages}` :<JoinChatForm OnSubmit={JoinRoom} displayName={user.displayName}/>}
-        </div>
+            <Route exact path='/' render={props => (
+                <> 
+                    <div className="welcome">Welcome <br></br> <span className='username'>{username} </span></div>
+                    <button onClick={() => setAddRoom(!addRoom)}>{addRoom ? 'Hide Form' : 'Add Room'} </button>
+                    {addRoom ? <JoinChatForm {...props} OnSubmit={JoinRoom} displayName={user.displayName} /> : ''}
+                    <RoomList user={user} roomID={chatroomID}/>
+                </> )} />
+            <Route path={`/chat_room`} render={props => <ChatRoom {...props} username={username} roomID={chatroomID}  />} />
+        </Router>
     )
 }
 
