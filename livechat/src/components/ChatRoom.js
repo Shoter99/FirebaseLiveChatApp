@@ -1,39 +1,55 @@
-import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router'
+import React, { useState, useEffect } from 'react'
 import firebase from '../firebase'
-const ChatRoom = ({user}) => {
-    
-    const location = useLocation()
-    const { roomName, roomID} = location.state
+import { useLocation } from 'react-router'
+import SendMessageField from './SendMessageField'
+import ChatField from './ChatField'
+
+
+function useMessages(roomID, user) {
     const [messages, setMessages] = useState([])
-    /*useEffect(() => {
-        const firestore = firebase.firestore()
-        var user = firebase.auth().currentUser
-        console.log(roomID)
-        console.log(username)
-        if(!user || roomID === ''){
+
+    const firestore = firebase.firestore()
+    var currentUser = firebase.auth().currentUser
+
+    
+
+    useEffect(() => {
+        if(!currentUser || roomID === ''){
 
             window.location.replace('/')
         } 
         else{
             firestore
         .collection(roomID)
+        .orderBy('createdAt')
         .onSnapshot((snapshot) => {
             const newMessages = snapshot.docs.map(doc => ({
                 id: doc.id,
                 ...doc.data()
             })) 
             setMessages(newMessages)
+            const chat = document.body.querySelector('.chatField')
+            chat.scrollTop = chat.scrollHeight
         })
         }
     }, [])
-*/
+    return messages;
+}
+
+const ChatRoom = ({user}) => {
+    
+    const location = useLocation()
+    const { roomName, roomID} = location.state
+    const messages = useMessages(roomID, user)
+    
+
     const leaveRoom = () => window.location.replace('/')
+    
     return (
         <div>
             <button onClick={leaveRoom}  className='leaveRoom'>Leave Room</button>
-            Hello {user.displayName} to chat room {roomID}
-            {messages}
+            <ChatField messages={messages} user={user}/>
+            <SendMessageField user={user} roomID={roomID}/>
         </div>
     )
     

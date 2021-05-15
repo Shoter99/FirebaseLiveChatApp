@@ -27,6 +27,7 @@ function App() {
   const logOut = () =>{
     if(auth.currentUser){
       auth.signOut()
+      window.location.href = '/'
     }
   }
 
@@ -35,7 +36,6 @@ return (
       <div className="container">
         <Header />
         {user ?  <HomePage user={user} onLogOut={logOut}/> : <Login onLogin={LoginWithGoogle}/> }
-        <Footer />
       </div>
     </div>
   );

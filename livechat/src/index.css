@@ -205,3 +205,72 @@ button:hover{
   font-size: 1em;
   transition: all .4s ease;
 }
+.chatField{
+  background: #2D2D2D;
+background: -moz-linear-gradient(top, #2D2D2D 0%, #4C4C4C 100%);
+background: -webkit-linear-gradient(top, #2D2D2D 0%, #4C4C4C 100%);
+background: linear-gradient(to bottom, #2D2D2D 0%, #4C4C4C 100%);
+  overflow-y: auto;
+  height: 70vh;
+}
+.sendMessage{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8vh;
+  
+}
+.send{
+  margin-left: 1rem;
+  width: 5vw;
+  height: 5vh;
+  
+}
+.send:hover{
+  cursor: pointer;
+  width: 5.5vw;
+  height: 5.5vh;
+}
+#message{
+  width: 80vw;
+  height: 5vh;
+  border-radius: 20px;
+  font-size: 1em;
+}
+.chatMessage{
+  width: 65vw;
+  margin: 1rem;
+  margin-top: 0;
+  margin-left: 5vw;
+  background-color: var(--platinum);
+  padding: .2rem .5rem;
+  border-radius: 20px;
+  font-size: 1.1em;
+  -webkit-box-shadow: 5px 5px 15px 5px #00000073; 
+  box-shadow: 5px 5px 15px 5px #00000098;
+
+}
+.messageField .Username{
+  margin: 0rem;
+  margin-left: calc(5vw + 1rem);
+  color: var(--cultured);
+  opacity: .6;
+
+}
+.recived{
+  margin-left: 20vw;
+}
+.recived .chatMessage{
+  background-color: var(--auburn);
+  color: white;
+}
+#usernameChange{
+  background-color: transparent;
+  border: none;
+  border-bottom: var(--lightred) 2px solid ;
+  color: var(--lightred);
+  font-size: .5em;
+  font-weight: bold;
+}
+
